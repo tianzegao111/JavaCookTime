@@ -8,9 +8,9 @@ public class InstructionModel {
 
     private int id;
     private String content;
-    private String position;
+    private int position;
 
-    public InstructionModel(String position, String content) {
+    public InstructionModel(int position, String content) {
         this.position = position;
         this.content = content;
     }
@@ -31,11 +31,11 @@ public class InstructionModel {
         this.content = content;
     }
 
-    public String getPosition() {
+    public int getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(int position) {
         this.position = position;
     }
 }
