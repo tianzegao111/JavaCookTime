@@ -248,11 +248,7 @@ public class DatabaseLiteHelper extends SQLiteOpenHelper {
 
 
         if(cursor.moveToFirst()){
-            do{
-
-                return cursor.getInt(0);
-
-            }while(cursor.moveToNext());
+            return cursor.getInt(0);
         }
         cursor.close();
 
@@ -290,5 +286,13 @@ public class DatabaseLiteHelper extends SQLiteOpenHelper {
     public Cursor getAllRecipeIngredients() {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("Select * from " + TABLE_RECIPIES_INGREDIENTS,null);
+    }
+
+    public List<RecipeModel> findRecipeWithIngredient(String ingredient) {
+
+        // step 1 find ingredient in ingredients table and get the ingredients' id (int)
+
+
+        return null;
     }
 }

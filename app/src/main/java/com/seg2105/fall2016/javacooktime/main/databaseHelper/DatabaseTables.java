@@ -16,7 +16,7 @@ public class DatabaseTables {
 
 
     // Ingridient Table
-    public static final String TABLE_INGREDIENTS = "ingredient";
+    public static final String TABLE_INGREDIENTS = "ingredients";
     public static final String COLUMN_INGREDIENT_ID = "ingredient_id";
     public static final String COLUMN_INGREDIENT_NAME = "ingredient_name";
 
