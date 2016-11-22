@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:layout_height="70dp"
+    android:baselineAligned="false">
+
+    <ImageView
+        app:srcCompat="@android:drawable/btn_star"
+        android:id="@+id/recipePhoto"
+        android:layout_weight="1"
+        android:layout_margin="5dp"
+        android:layout_height="60dp"
+        android:layout_width="150dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingLeft="5dp">
+
+        <TextView
+            android:text="Recipe Title"
+            android:layout_width="match_parent"
+            android:id="@+id/recipeTitle"
+            android:textStyle="normal|bold"
+            android:textSize="18sp"
+            android:paddingTop="5dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_height="30dp"
+            android:paddingBottom="5dp" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Category:"
+                android:id="@+id/categoryLabel"
+                android:textSize="14sp"
+                android:layout_height="20dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_width="75dp" />
+
+            <TextView
+                android:text="(Category)"
+                android:layout_width="wrap_content"
+                android:id="@+id/categoryInfo"
+                android:layout_height="20dp"
+                android:textSize="14sp"
+                android:layout_column="1"
+                android:layout_row="0" />
+
+            <TextView
+                android:text="Dish Type:"
+                android:id="@+id/dishTypeLabel"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_height="20dp"
+                android:textSize="14sp"
+                android:layout_width="75dp" />
+
+            <TextView
+                android:text="(Dish Type)"
+                android:layout_width="wrap_content"
+                android:id="@+id/dishTypeInfo"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:layout_height="20dp"
+                android:textSize="14sp" />
+        </GridLayout>
+
+    </LinearLayout>
+</LinearLayout>
