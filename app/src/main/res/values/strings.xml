@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">JavaCookTime</string>
+
+    <string name="dishType_prompt">Choose a Dish Type</string>
+    <string name="category_prompt">Choose a category</string>
+    <string-array name="category_arrays">
+        <item>(Choose a Category)</item>
+        <item>American</item>
+        <item>Chinese</item>
+        <item>Greek</item>
+        <item>Indian</item>
+        <item>Italian</item>
+        <item>Mexican</item>
+        <item>Thai</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="dishType_arrays">
+        <item>(Choose a Dish Type)</item>
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Dessert</item>
+        <item>Other</item>
+    </string-array>
+
 </resources>
+
