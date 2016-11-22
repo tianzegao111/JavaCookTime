@@ -11,6 +11,9 @@ import com.seg2105.fall2016.javacooktime.main.model.IngredientModel;
 import com.seg2105.fall2016.javacooktime.main.model.InstructionModel;
 import com.seg2105.fall2016.javacooktime.main.model.RecipeModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.seg2105.fall2016.javacooktime.main.databaseHelper.DatabaseTables.*;
 
 
@@ -127,16 +130,15 @@ public class DatabaseLiteHelper extends SQLiteOpenHelper {
 
         for (IngredientModel ingredient : recipe.getIngredients()) {
 
-            relationalIngredientId = ingredientsIdByName(getAllIngredients(), ingredient.getName());
+            relationalIngredientId = ingredientIdByName(ingredient.getName());
 
             if (relationalIngredientId == -1 ) {
                 if (!addToIngredientTable(ingredient)) {
                     System.out.print("Failed to add ingredient");
                     return false;
                 }
+                relationalIngredientId = Integer.parseInt(retrieveLastInputFor(getAllIngredients(),COLUMN_INGREDIENT_ID));
             }
-
-            relationalIngredientId = Integer.parseInt(retrieveLastInputFor(getAllIngredients(),COLUMN_INGREDIENT_ID));
 
             if (!addToRecipeIngredientTable(relationalRecipeId, relationalIngredientId, ingredient.getAmount(), ingredient.getMeasumentStandard())) {
                 System.out.print("Failed to add to relational database");
@@ -154,7 +156,7 @@ public class DatabaseLiteHelper extends SQLiteOpenHelper {
      * @return true if successful
      */
 
-    public boolean addToRecipeInfoDatabase(RecipeModel recipe) {
+    private boolean addToRecipeInfoDatabase(RecipeModel recipe) {
 
         boolean createSuccessful = false;
 
@@ -180,7 +182,7 @@ public class DatabaseLiteHelper extends SQLiteOpenHelper {
      * @return true if successful
      */
 
-    public boolean addToIngredientTable(IngredientModel ingredient) {
+    private boolean addToIngredientTable(IngredientModel ingredient) {
 
         boolean createSuccessful = false;
 
@@ -202,7 +204,7 @@ public class DatabaseLiteHelper extends SQLiteOpenHelper {
      * @return true if successful
      */
 
-    public boolean addToInstructionTable(InstructionModel instruction, int recipeId) {
+    private boolean addToInstructionTable(InstructionModel instruction, int recipeId) {
 
         boolean createSuccessful = false;
 
@@ -220,7 +222,7 @@ public class DatabaseLiteHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean addToRecipeIngredientTable(int recipeId, int ingredientId, int amount, String measurmentType) {
+    private boolean addToRecipeIngredientTable(int recipeId, int ingredientId, int amount, String measurmentType) {
         boolean createSuccessful = false;
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -239,16 +241,16 @@ public class DatabaseLiteHelper extends SQLiteOpenHelper {
 
     // Get data
 
-    public int ingredientsIdByName(Cursor cursor, String ingredientName) {
+    public int ingredientIdByName(String ingredientName) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT "+ COLUMN_INGREDIENT_ID +" FROM "+ TABLE_INGREDIENTS +" WHERE "+ COLUMN_INGREDIENT_NAME +" = '" + ingredientName + "'", null);
+
 
         if(cursor.moveToFirst()){
             do{
-                String id = cursor.getColumnName(0);
-                String name = cursor.getColumnName(1);
 
-                if (name.equals(ingredientName)) {
-                    return Integer.parseInt(id);
-                }
+                return cursor.getInt(0);
 
             }while(cursor.moveToNext());
         }
@@ -289,8 +291,4 @@ public class DatabaseLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("Select * from " + TABLE_RECIPIES_INGREDIENTS,null);
     }
-
-
-
-
 }
