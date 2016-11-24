@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/JavaCookTime.iml" filepath="$PROJECT_DIR$/JavaCookTime.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CookHelper_Add.iml" filepath="$PROJECT_DIR$/CookHelper_Add.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
